@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { SignUpInterface } from '../../interface/LoginInterface';
 import { ExpenseService } from '../../Service/expense.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -12,7 +13,7 @@ export class SignupComponent implements OnInit{
 
   signupForm: FormGroup = new FormGroup({});
 
-  constructor(private signUpService: ExpenseService){}
+  constructor(private signUpService: ExpenseService, private router: Router){}
 
   ngOnInit(): void {
      this.signupForm  = new FormGroup({
@@ -34,7 +35,9 @@ export class SignupComponent implements OnInit{
   onSubmit(){
     if(this.signupForm.valid){
       this.signUpService.signupRequest(this.signupForm.value).subscribe(res => {
-        console.log(res)
+        if(res){
+          this.router.navigate(['/'])
+        }
       })
     }
   }

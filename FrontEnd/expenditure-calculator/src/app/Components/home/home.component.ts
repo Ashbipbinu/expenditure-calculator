@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { faCoffee, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +6,5 @@ import { faCoffee, faPlus } from '@fortawesome/free-solid-svg-icons';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  faCoffee = faCoffee;
-  faPlus = faPlus
+  
 }

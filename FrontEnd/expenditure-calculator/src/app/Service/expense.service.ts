@@ -30,4 +30,13 @@ export class ExpenseService {
   updateUser(data: UserInterface, id:string){
     return this.http.post<any>(`${this.serverUrl}/user/update/${id}`, data)
   }
+
+  getUserId(){
+    return localStorage.getItem('user_id')
+  }
+
+  setUserId(data:any){
+    console.log('data', data)
+    localStorage.setItem('user_id', data._id)
+  }
 } 

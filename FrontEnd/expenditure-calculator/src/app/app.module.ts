@@ -11,6 +11,7 @@ import { SignupComponent } from './Components/signup/signup.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { HomeComponent } from './Components/home/home.component';
+import { AddExpenditureComponent } from './Components/add-expenditure/add-expenditure.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { HomeComponent } from './Components/home/home.component';
     ProfileComponent,
     NavbarComponent,
     HomeComponent,
+    AddExpenditureComponent,
    
   ],
   imports: [

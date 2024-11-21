@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ExpenseService } from '../../Service/expense.service';
 import { LoginInterface } from '../../interface/LoginInterface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,9 +11,10 @@ import { LoginInterface } from '../../interface/LoginInterface';
 })
 export class LoginComponent implements OnInit{
 
-  constructor(private authService: ExpenseService){}
+  constructor(private authService: ExpenseService, private router: Router){}
 
   loginForm: FormGroup = new FormGroup({});
+  error:string = ''
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -26,10 +28,13 @@ export class LoginComponent implements OnInit{
   onSubmit() {
 
     if (this.loginForm.valid) {
-      this.authService.loginRequest(this.loginForm.value).subscribe(res => {
+      this.authService.loginRequest(this.loginForm.value).subscribe((res) => {
         if(res){
+          this.authService.setUserId(res)
+          this.router.navigate(['/home'])
         }
-      })
+         this.error = "Invalid credentials"
+      },(error) =>  this.error = error.error.message)
     } 
   }
 

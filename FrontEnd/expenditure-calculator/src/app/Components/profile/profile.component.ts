@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ExpenseService } from '../../Service/expense.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -9,15 +10,17 @@ import { ExpenseService } from '../../Service/expense.service';
 })
 export class ProfileComponent implements OnInit {
   profileForm: FormGroup = new FormGroup({});
-  id:string = "673dc0c4775d59b186319b10"
+  id:any
 
-  constructor(private profileService: ExpenseService) { }
+  constructor(private profileService: ExpenseService, private router: Router) { }
 
   ngOnInit(): void {
     this.profileForm = new FormGroup({
       name: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
     });
+    this.id = this.profileService.getUserId()
+  
     this.profileService.getUserById(this.id).subscribe((data) => {
       this.profileForm.patchValue(data);
     });
@@ -33,7 +36,9 @@ export class ProfileComponent implements OnInit {
 
   deleteProfile() {
     this.profileService.deleteUser(this.id).subscribe((data) => {
-      console.log(data);
+      if(data){
+        this.router.navigate(['/signup'])
+      }
     });
   }
 }
