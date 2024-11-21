@@ -25,7 +25,6 @@ export class AddExpenditureComponent {
     this.expenseForm = new FormGroup({
       name: new FormControl('', Validators.required),
       amount: new FormControl('', Validators.required),
-      totalPrice: new FormControl('', Validators.required),
       date: new FormControl('', Validators.required),
       category: new FormControl('', Validators.required)
     });
