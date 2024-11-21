@@ -1,9 +1,12 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import cors from 'cors';
+
 import  userSignUp  from "./Routers/auth.route.js";
 import userManager from './Routers/user.route.js'
-import cors from 'cors';
+import userExpense from './Routers/expense.route.js'
+
 
 const app = express();
 dotenv.config();
@@ -12,7 +15,7 @@ app.use(cors());
 app.use(express.json())
 app.use("/api/auth", userSignUp);
 app.use('/api/user', userManager)
-
+app.use('/api/expense', userExpense)
 
 
 app.use((err, req, res, next) => {
