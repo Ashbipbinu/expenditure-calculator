@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {  faTimes } from '@fortawesome/free-solid-svg-icons';
 import { ExpenseService } from '../../Service/expense.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-expenditure',
@@ -19,14 +20,14 @@ export class AddExpenditureComponent {
 
   faTimes = faTimes
 
-  constructor(private expense: ExpenseService) { }
+  constructor(private expense: ExpenseService, private router:Router) { }
 
   ngOnInit(): void {
     this.expenseForm = new FormGroup({
       name: new FormControl('', Validators.required),
       amount: new FormControl('', Validators.required),
       date: new FormControl('', Validators.required),
-      category: new FormControl('', Validators.required)
+      categories: new FormControl('', Validators.required)
     });
 
     this.categoryForm = new FormGroup({
@@ -43,6 +44,11 @@ export class AddExpenditureComponent {
 
   addExpense() {
     console.log(this.expenseForm.value);
+    this.expense.addNewCategoryAndPrice(this.expenseForm.value).subscribe(res => {
+      if(res){
+        this.router.navigate(['/home/dashboard'])  
+      }
+    })
   }
 
   addCategoryAndAmount() {
@@ -55,14 +61,6 @@ export class AddExpenditureComponent {
         }
       }, (error) => this.error = "Something went wrong!")
     }
-  }
-
-  addNewCategory() {
-    // const newCategory = prompt('Enter new category:');
-    // if (newCategory) {
-    //   this.categories.push(newCategory);
-    //   this.selectedCategories.push(newCategory);
-    // }
   }
 
   removeCategory(id : string) {

@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit{
       this.authService.loginRequest(this.loginForm.value).subscribe((res) => {
         if(res){
           this.authService.setUserId(res)
-          this.router.navigate(['/home'])
+          this.router.navigate(['/home/dashboard'])
         }
          this.error = "Invalid credentials"
       },(error) =>  this.error = error.error.message)

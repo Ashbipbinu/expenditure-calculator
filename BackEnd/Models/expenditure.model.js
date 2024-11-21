@@ -15,9 +15,9 @@ const expenditureSchema  = new mongoose.Schema({
         require: true
      },
      categories: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'CategoryAndPrice'
-     }
+        type: String,
+        require: true 
+     } 
 });
 
 const Expenditure =  mongoose.model('expenditure', expenditureSchema)

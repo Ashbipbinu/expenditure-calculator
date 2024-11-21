@@ -6,6 +6,7 @@ import { HomeComponent } from './Components/home/home.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { CommonModule } from '@angular/common';
 import { AddExpenditureComponent } from './Components/add-expenditure/add-expenditure.component';
+import { DashboardComponent } from './Components/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
       {
         path: 'profile',
         component: ProfileComponent 
+      },
+      {
+        path: 'dashboard',
+        component: DashboardComponent 
       },
       {
         path: 'add-expense',

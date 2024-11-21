@@ -4,7 +4,7 @@ import CategoryAndPrice from "../Models/expense.model.js";
 export const categoryContoller = async (req, res, next) => {
   try {
     const categoryAndPrice = await CategoryAndPrice.create(req.body);
-    return res.status(200).json(categoryAndPrice);
+     return res.status(200).json(categoryAndPrice);
   } catch (error) {
     next(error);
   }
@@ -42,6 +42,6 @@ export const addNewExpenseController = async (req, res, next) => {
     const addNewExpense = await Expenditure.create(req.body);
     return res.status(201).json(addNewExpense)
   } catch (error) {
-    next(error)
+    next(error) 
   }
 }

@@ -12,6 +12,7 @@ import { ProfileComponent } from './Components/profile/profile.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { HomeComponent } from './Components/home/home.component';
 import { AddExpenditureComponent } from './Components/add-expenditure/add-expenditure.component';
+import { DashboardComponent } from './Components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AddExpenditureComponent } from './Components/add-expenditure/add-expend
     NavbarComponent,
     HomeComponent,
     AddExpenditureComponent,
+    DashboardComponent,
    
   ],
   imports: [

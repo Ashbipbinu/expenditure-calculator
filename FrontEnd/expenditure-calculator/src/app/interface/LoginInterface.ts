@@ -15,3 +15,10 @@ export interface UserInterface extends SignUpInterface{
 export interface CategoryAndPrice {
     category: string,
 }
+
+export interface AddNewExpenseInterface {
+    name: string,
+    amount: number,
+    date: Date,
+    categories: string[]
+}

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CategoryAndPrice, LoginInterface, SignUpInterface, UserInterface } from '../interface/LoginInterface';
+import { AddNewExpenseInterface, CategoryAndPrice, LoginInterface, SignUpInterface, UserInterface } from '../interface/LoginInterface';
 
 @Injectable({
   providedIn: 'root'
@@ -50,6 +50,10 @@ export class ExpenseService {
 
   deleteCategory(id : string){
     return this.http.get<any>(`${this.serverUrl}/expense/delete/${id}`)
+  }
+
+  addNewExpense(data: AddNewExpenseInterface){
+    return this.http.post<AddNewExpenseInterface>(`${this.serverUrl}/new-expense`, data)
   }
   
 } 
