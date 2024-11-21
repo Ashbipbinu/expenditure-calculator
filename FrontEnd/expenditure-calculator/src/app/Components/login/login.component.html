@@ -1,36 +1,67 @@
 <div class="flex justify-center items-center h-screen bg-gray-100">
-    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-1/2 md:w-1/3">
-
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <h2 class="text-lg font-bold mb-4">Login</h2>
-        <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
-            Email
-          </label>
-          <input 
-            formControlName="email" 
-            type="email" 
-            class="focus:outline-blue-500 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline"
-            placeholder="your.email@example.com"
-          />
-        </div>
-        <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-            Password
-          </label>
-          <input 
-            formControlName="password" 
-            type="password" 
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-blue-500 focus:shadow-outline"
-            placeholder="********"
-          />
-        </div>
-        <button 
-          type="submit" 
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+  <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-1/2 md:w-1/3">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <h2 class="text-lg font-bold mb-4">Login</h2>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+          Email
+        </label>
+        <input
+          formControlName="email"
+          type="email"
+          class="focus:outline-blue-500 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline"
+          placeholder="your.email@example.com"
+        />
+        <div
+          *ngIf="
+            loginForm.invalid &&
+            (loginForm.get('email')?.dirty || loginForm.get('email')?.untouched)
+          "
+          class="text-red-500 text-xs"
         >
-          Login
-        </button>
-      </form>
-    </div>
+          <div
+            *ngIf="loginForm.get('email')?.errors?.['required'] && loginForm.get('email')?.touched"
+          >
+            *Email is required.
+          </div>
+          <div *ngIf="loginForm.get('email')?.errors?.['email']">
+            Invalid email address.
+          </div>
+        </div>
+      </div>
+      <div class="mb-4">
+        <label
+          class="block text-gray-700 text-sm font-bold mb-2"
+          for="password"
+        >
+          Password
+        </label>
+        <input
+          formControlName="password"
+          type="password"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-blue-500 focus:shadow-outline"
+          placeholder="********"
+        />
+        <div
+        *ngIf="
+          loginForm.invalid &&
+          (loginForm.get('password')?.dirty || loginForm.get('password')?.untouched)
+        "
+        class="text-red-500 text-xs"
+      >
+        <div
+          *ngIf="loginForm.get('password')?.errors?.['required'] && loginForm.get('password')?.touched"
+        >
+          *Password is required.
+        </div>
+      </div>
+      </div>
+      <button
+        type="submit"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+      >
+        Login
+      </button>
+    </form>
   </div>
+</div>

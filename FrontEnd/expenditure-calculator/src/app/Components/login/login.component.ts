@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ExpenseService } from '../../Service/expense.service';
+import { LoginInterface } from '../../interface/LoginInterface';
 
 @Component({
   selector: 'app-login',
@@ -23,10 +24,10 @@ export class LoginComponent implements OnInit{
 
 
   onSubmit() {
+
     if (this.loginForm.valid) {
       this.authService.loginRequest(this.loginForm.value).subscribe(res => {
         if(res){
-          console.log(res)
         }
       })
     } 

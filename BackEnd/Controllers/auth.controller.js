@@ -39,7 +39,7 @@ export const userLoginController = async (req, res, next) => {
     return res
       .cookie("access_token", token, {
         httpOnly: true,
-        expires: new Date(Date.now() + 3600000),
+        maxAge: 60 * 60,
       })
       .status(201)
       .json(rest);

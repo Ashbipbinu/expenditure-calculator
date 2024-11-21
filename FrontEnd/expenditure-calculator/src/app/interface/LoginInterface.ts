@@ -7,3 +7,7 @@ export interface SignUpInterface extends LoginInterface{
     name: string,
     confirmPassword: string
 }
+
+export interface UserInterface extends SignUpInterface{
+    _id: string
+}

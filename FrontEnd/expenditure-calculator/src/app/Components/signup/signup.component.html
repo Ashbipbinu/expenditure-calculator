@@ -10,14 +10,14 @@
           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="username"
           >
-        <!-- <div *ngIf="signupForm.get('name').invalid && (signupForm.get('name').dirty || signupForm.get('name').touched)" class="text-red-500 text-xs mt-1">
-          <div *ngIf="signupForm.get('name').errors.required">
+        <div *ngIf="signupForm.get('name')?.invalid && (signupForm.get('name')?.dirty || signupForm.get('name')?.touched)" class="text-red-500 text-xs mt-1">
+          <div *ngIf="signupForm.get('name')?.errors?.['required']">
             Name is required.
           </div>
-          <div *ngIf="signupForm.get('name').errors.minlength">
+          <div *ngIf="signupForm.get('name')?.errors?.['minlength']">
             Name should be at least 3 characters.
           </div>
-        </div> -->
+        </div>
       </div>
   
       <div class="mb-4">
@@ -29,14 +29,14 @@
           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           placeholder="email"
           >
-        <!-- <div *ngIf="signupForm.get('email').invalid && (signupForm.get('email').dirty || signupForm.get('email').touched)" class="text-red-500 text-xs mt-1">
-          <div *ngIf="signupForm.get('email').errors.required">
+        <div *ngIf="signupForm.get('email')?.invalid && (signupForm.get('email')?.dirty || signupForm.get('email')?.touched)" class="text-red-500 text-xs mt-1">
+          <div *ngIf="signupForm.get('email')?.errors?.['required']">
             Email is required.
           </div>
-          <div *ngIf="signupForm.get('email').errors.email">
+          <div *ngIf="signupForm.get('email')?.errors?.['email']">
             Invalid email.
           </div>
-        </div> -->
+        </div>
       </div>
   
       <div class="mb-4">
@@ -48,14 +48,14 @@
           placeholder="password"
           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         >
-        <!-- <div *ngIf="signupForm.get('password').invalid && (signupForm.get('password').dirty || signupForm.get('password').touched)" class="text-red-500 text-xs mt-1">
-          <div *ngIf="signupForm.get('password').errors.required">
+        <div *ngIf="signupForm.get('password')?.invalid && (signupForm.get('password')?.dirty || signupForm.get('password')?.touched)" class="text-red-500 text-xs mt-1">
+          <div *ngIf="signupForm.get('password')?.errors?.['required']">
             Password is required.
           </div>
-          <div *ngIf="signupForm.get('password').errors.minlength">
+          <div *ngIf="signupForm.get('password')?.errors?.['minlength']">
             Password should be at least 8 characters.
           </div>
-        </div> -->
+        </div>
       </div>
   
       <div class="mb-4">
@@ -67,19 +67,18 @@
           placeholder="confirm password"
           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         >
-        <!-- <div *ngIf="signupForm.get('confirmPassword').invalid && (signupForm.get('confirmPassword').dirty || signupForm.get('confirmPassword').touched)" class="text-red-500 text-xs mt-1">
-          <div *ngIf="signupForm.get('confirmPassword').errors.required">
+        <div *ngIf="signupForm.get('confirmPassword')?.invalid && (signupForm.get('confirmPassword')?.dirty || signupForm.get('confirmPassword')?.touched)" class="text-red-500 text-xs mt-1">
+          <div *ngIf="signupForm.get('confirmPassword')?.errors?.['required']">
             Confirm password is required.
           </div>
-          <div *ngIf="signupForm.get('confirmPassword').errors.mismatch">
+          <div *ngIf="signupForm.get('confirmPassword')?.errors?.['mismatch']">
             Passwords do not match.
           </div>
-        </div> -->
+        </div>
       </div>
   
       <button 
         type="submit" 
-        [disabled]="!signupForm.valid" 
         class="bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
       >
         Sign Up

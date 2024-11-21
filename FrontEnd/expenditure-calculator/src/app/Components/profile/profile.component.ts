@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ExpenseService } from '../../Service/expense.service';
 
 @Component({
   selector: 'app-profile',
@@ -8,32 +9,31 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class ProfileComponent implements OnInit {
   profileForm: FormGroup = new FormGroup({});
+  id:string = "673dc0c4775d59b186319b10"
 
-  constructor() { }
+  constructor(private profileService: ExpenseService) { }
 
   ngOnInit(): void {
     this.profileForm = new FormGroup({
       name: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', Validators.required)
     });
-
-    // this.userService.getUserProfile().subscribe((data) => {
-    //   this.profileForm.patchValue(data);
-    // });
+    this.profileService.getUserById(this.id).subscribe((data) => {
+      this.profileForm.patchValue(data);
+    });
   }
 
   updateProfile() {
-    // if (this.profileForm.valid) {
-    //   this.userService.updateUserProfile(this.profileForm.value).subscribe((data) => {
-    //     console.log(data);
-    //   });
-    // }
+    if (this.profileForm.valid) {
+      this.profileService.updateUser(this.profileForm.value, this.id).subscribe((data) => {
+        console.log(data);
+      });
+    }
   }
 
   deleteProfile() {
-    // this.userService.deleteUserProfile().subscribe((data) => {
-    //   console.log(data);
-    // });
+    this.profileService.deleteUser(this.id).subscribe((data) => {
+      console.log(data);
+    });
   }
 }

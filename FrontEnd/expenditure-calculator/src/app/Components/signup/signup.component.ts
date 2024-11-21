@@ -16,10 +16,10 @@ export class SignupComponent implements OnInit{
 
   ngOnInit(): void {
      this.signupForm  = new FormGroup({
-      name: new FormControl(''),
-      email: new FormControl(''),
-      password: new FormControl(''),
-      confirmPassword: new FormControl('')
+      name: new FormControl('', [Validators.minLength(3), Validators.required]),
+      email: new FormControl('', [Validators.email, Validators.required]),
+      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      confirmPassword: new FormControl('', Validators.required)
      }, {
       validators: [this.passwordMatch] as ValidatorFn[]
     })
@@ -32,9 +32,11 @@ export class SignupComponent implements OnInit{
   }
 
   onSubmit(){
-    this.signUpService.signupRequest(this.signupForm.value).subscribe(res => {
-      console.log(res)
-    })
+    if(this.signupForm.valid){
+      this.signUpService.signupRequest(this.signupForm.value).subscribe(res => {
+        console.log(res)
+      })
+    }
   }
 
 }
