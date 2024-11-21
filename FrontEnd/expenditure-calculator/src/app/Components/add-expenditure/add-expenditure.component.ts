@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {  faTimes } from '@fortawesome/free-solid-svg-icons';
+import { ExpenseService } from '../../Service/expense.service';
 
 @Component({
   selector: 'app-add-expenditure',
@@ -12,21 +13,32 @@ export class AddExpenditureComponent {
   expenseForm: FormGroup = new FormGroup({});
   categoryForm: FormGroup = new FormGroup({});
   categoryAdded = false;
-  categories = ["Grocerries", "Car", "Mobile phones"];
-  selectedCategories = ["Grocerries", "Car", "Mobile phones"];
+  categories: any[] = [];
+  selectedCategories: any[] = [];
+  error:string = ''
 
   faTimes = faTimes
 
-  constructor() { }
+  constructor(private expense: ExpenseService) { }
 
   ngOnInit(): void {
     this.expenseForm = new FormGroup({
       name: new FormControl('', Validators.required),
       amount: new FormControl('', Validators.required),
+      totalPrice: new FormControl('', Validators.required),
       date: new FormControl('', Validators.required),
       category: new FormControl('', Validators.required)
     });
 
+    this.categoryForm = new FormGroup({
+      category: new FormControl('', Validators.required),
+     
+    });
+
+    this.expense.getAllCategory().subscribe(res => {
+        this.selectedCategories = res 
+        this.categories = res
+    })
 
   }
 
@@ -35,10 +47,15 @@ export class AddExpenditureComponent {
   }
 
   addCategoryAndAmount() {
-    // const newCategory = this.categoryForm.get('newCategory').value;
-    // const totalAmount = this.categoryForm.get('totalAmount').value;
-    // this.categories.push(newCategory);
-     this.categoryAdded = true;
+    console.log(this.categoryForm)
+    if(this.categoryForm.valid){
+      this.expense.addNewCategoryAndPrice(this.categoryForm.value).subscribe(res => {
+        if(res){
+          this.categoryAdded = true;
+          this.ngOnInit()
+        }
+      }, (error) => this.error = "Something went wrong!")
+    }
   }
 
   addNewCategory() {
@@ -49,8 +66,10 @@ export class AddExpenditureComponent {
     // }
   }
 
-  removeCategory(category: string) {
-    this.selectedCategories = this.selectedCategories.filter(c => c !== category);
+  removeCategory(id : string) {
+     this.expense.deleteCategory(id).subscribe(res => {
+        this.ngOnInit()
+     })
   }
 }
 

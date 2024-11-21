@@ -3,35 +3,28 @@
 
   <!-- Category and Total Amount Form -->
   <div class="flex flex-col mb-4">
-    <h3 class="text-md font-bold mb-2">Insert Category and Total Amount</h3>
+    <h3 class="text-md font-bold mb-2">Insert Category</h3>
     <form [formGroup]="categoryForm" (ngSubmit)="addCategoryAndAmount()">
       <div class="flex flex-col mb-4 w-1/2">
         <label class="text-sm mb-2" for="newCategory">New Category</label>
         <input
-          formControlName="newCategory"
-          id="newCategory"
+          formControlName="category"
+          id="category"
           type="text"
           class="p-2 rounded-md border border-gray-300"
         />
       </div>
-      <div class="flex flex-col mb-4 w-1/2">
-        <label class="text-sm mb-2" for="totalAmount">Total Amount</label>
-        <input
-          formControlName="totalAmount"
-          id="totalAmount"
-          type="number"
-          class="p-2 rounded-md border border-gray-300"
-        />
-      </div>
+     
       <!-- Selected Categories Chips -->
       <div class="flex  flex-wrap mb-4">
         <div
           *ngFor="let category of selectedCategories"
-          class="mr-2 mt-2"
+          class="mr-2 mt-2  flex flex-wrap"
         >
-          <span class="bg-blue-100 text-blue-800 py-2 px-4 rounded-md flex justify-center items-center gap-3">
-            <p class="text-lg font-semibold">{{ category }}</p>
+          <span class="bg-blue-100 text-blue-800 py-2 px-4 rounded-md flex space-x-5 items-center gap-3">
+            <p class="text-lg font-semibold">{{ category.category }}</p>
             <fa-icon
+              (click)="removeCategory(category._id)"
               [icon]="faTimes"
               class="text-red-500 cursor-pointer mt-1"
             ></fa-icon>
@@ -42,7 +35,7 @@
         type="submit"
         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
       >
-        Insert Category and Amount
+        Insert Category
       </button>
     </form>
   </div>
@@ -60,6 +53,15 @@
           formControlName="name"
           id="name"
           type="text"
+          class="p-2 rounded-md border border-gray-300"
+        />
+      </div>
+      <div class="flex flex-col mb-4 w-1/2">
+        <label class="text-sm mb-2" for="totalAmount">Total Amount</label>
+        <input
+          formControlName="totalPrice"
+          id="totalPrice"
+          type="number"
           class="p-2 rounded-md border border-gray-300"
         />
       </div>
@@ -92,7 +94,7 @@
         >
           <option value="">Select Category</option>
           <option *ngFor="let category of categories" [value]="category">
-            {{ category }}
+            {{ category.category }}
           </option>
         </select>
       </div>
@@ -104,4 +106,7 @@
       Add Expense
     </button>
   </form>
+  <div *ngIf="error">
+    <p class="text-lg text-red-600 font-bold">{{error}}</p>
+  </div>
 </div>

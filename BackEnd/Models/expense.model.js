@@ -6,10 +6,6 @@ const categoryAndPriceSchema = new mongoose.Schema({
         require: true,
         unique: true
     },
-    totalPrice: {
-        type: Number,
-        required: true
-    }
 })
 
 const CategoryAndPrice = mongoose.model('category', categoryAndPriceSchema)

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LoginInterface, SignUpInterface, UserInterface } from '../interface/LoginInterface';
+import { CategoryAndPrice, LoginInterface, SignUpInterface, UserInterface } from '../interface/LoginInterface';
 
 @Injectable({
   providedIn: 'root'
@@ -39,4 +39,17 @@ export class ExpenseService {
     console.log('data', data)
     localStorage.setItem('user_id', data._id)
   }
+
+  getAllCategory(){
+    return this.http.get<string[]>(`${this.serverUrl}/expense/all-category`)
+  }
+
+  addNewCategoryAndPrice(data: CategoryAndPrice){
+    return this.http.post<CategoryAndPrice>(`${this.serverUrl}/expense/category`, data)
+  }
+
+  deleteCategory(id : string){
+    return this.http.get<any>(`${this.serverUrl}/expense/delete/${id}`)
+  }
+  
 } 

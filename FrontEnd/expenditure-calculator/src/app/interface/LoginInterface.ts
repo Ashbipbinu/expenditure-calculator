@@ -11,3 +11,7 @@ export interface SignUpInterface extends LoginInterface{
 export interface UserInterface extends SignUpInterface{
     _id: string
 }
+
+export interface CategoryAndPrice {
+    category: string,
+}
