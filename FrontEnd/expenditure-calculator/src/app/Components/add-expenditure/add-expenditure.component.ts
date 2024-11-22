@@ -43,8 +43,7 @@ export class AddExpenditureComponent {
   }
 
   addExpense() {
-    console.log(this.expenseForm.value);
-    this.expense.addNewCategoryAndPrice(this.expenseForm.value).subscribe(res => {
+    this.expense.addNewExpense(this.expenseForm.value).subscribe(res => {
       if(res){
         this.router.navigate(['/home/dashboard'])  
       }
@@ -52,7 +51,6 @@ export class AddExpenditureComponent {
   }
 
   addCategoryAndAmount() {
-    console.log(this.categoryForm)
     if(this.categoryForm.valid){
       this.expense.addNewCategoryAndPrice(this.categoryForm.value).subscribe(res => {
         if(res){

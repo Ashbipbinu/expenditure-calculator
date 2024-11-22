@@ -21,6 +21,10 @@ export class LoginComponent implements OnInit{
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, Validators.required)
     })
+
+    setInterval(() => {
+      this.router.navigate(['/'])
+    }, 36000)
   }
 
 

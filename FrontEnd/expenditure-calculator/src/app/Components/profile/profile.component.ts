@@ -29,7 +29,6 @@ export class ProfileComponent implements OnInit {
   updateProfile() {
     if (this.profileForm.valid) {
       this.profileService.updateUser(this.profileForm.value, this.id).subscribe((data) => {
-        console.log(data);
       });
     }
   }

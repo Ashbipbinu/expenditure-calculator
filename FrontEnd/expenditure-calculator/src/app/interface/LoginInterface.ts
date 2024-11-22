@@ -19,6 +19,6 @@ export interface CategoryAndPrice {
 export interface AddNewExpenseInterface {
     name: string,
     amount: number,
-    date: Date,
     categories: string[]
+    date: Date,
 }

@@ -36,7 +36,6 @@ export class ExpenseService {
   }
 
   setUserId(data:any){
-    console.log('data', data)
     localStorage.setItem('user_id', data._id)
   }
 
@@ -44,16 +43,19 @@ export class ExpenseService {
     return this.http.get<string[]>(`${this.serverUrl}/expense/all-category`)
   }
 
-  addNewCategoryAndPrice(data: CategoryAndPrice){
-    return this.http.post<CategoryAndPrice>(`${this.serverUrl}/expense/category`, data)
+  addNewCategoryAndPrice(data: AddNewExpenseInterface){
+    return this.http.post<AddNewExpenseInterface>(`${this.serverUrl}/expense/category`, data)
   }
 
   deleteCategory(id : string){
     return this.http.get<any>(`${this.serverUrl}/expense/delete/${id}`)
   }
 
-  addNewExpense(data: AddNewExpenseInterface){
-    return this.http.post<AddNewExpenseInterface>(`${this.serverUrl}/new-expense`, data)
+  addNewExpense(data: any){
+    return this.http.post<any>(`${this.serverUrl}/expense/new-expense`, data)
   }
   
+  getSummary(){
+    return this.http.get<any>(`${this.serverUrl}/expense/get-summary`)
+  }
 } 
